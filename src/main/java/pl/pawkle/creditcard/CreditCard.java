@@ -32,15 +32,6 @@ class CreditCard{
         return this.balance;
     }
 
-    public void withdraw(int amount){
-
-        int saldo = limit - amount;
-
-        if(amount > limit){
-            blockCreditCard();
-        }
-    }
-
     public boolean blockCreditCard(){
         return this.isBlocked = true;
     }
