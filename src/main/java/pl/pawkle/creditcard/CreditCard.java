@@ -50,7 +50,14 @@ class CreditCard{
     private boolean isWithdrawOverTheLimit(BigDecimal money) {
         return money.compareTo(limit) > 0;
     }
-
+    
+	public void repay(BigDecimal money) {
+        if (money.compareTo(BigDecimal.ZERO) < 0) {
+            throw new CantRepayNegativeAmountException();
+        }
+        balance = balance.add(money);
+    }
+    
     public int getLimit(){
         return this.limit;
     }
