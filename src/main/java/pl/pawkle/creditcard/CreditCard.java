@@ -17,9 +17,6 @@ class CreditCard{
         return this.cardNumber;
     }
 
-    public boolean getIsBlocked(){
-        return isBlocked;
-    }
 
     public void setLimit(int limit){
         this.limit = limit;
