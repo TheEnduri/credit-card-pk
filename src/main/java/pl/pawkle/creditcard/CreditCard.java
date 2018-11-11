@@ -1,9 +1,9 @@
 package pl.pawkle.creditcard;
 
 class CreditCard{
-    private int limit;
-    private boolean isBlocked = false;
-    private int balance;
+    private BigDecimal limit;
+    private boolean blocked = false;
+    private BigDecimal balance;
     private String cardNumber;
 
     public CreditCard(){
@@ -20,6 +20,35 @@ class CreditCard{
 
     public void setLimit(int limit){
         this.limit = limit;
+    }
+
+        public void block() {
+        this.blocked = true;
+    }
+
+    public boolean isBlocked() {
+        return this.blocked;
+    }
+
+    public void withdraw(BigDecimal money) {
+        if (isWithdrawOverTheLimit(money))
+            throw new NotEnoughMoneyException();
+
+        if (isNotEnoughMoney(money))
+            throw new NotEnoughMoneyException();
+
+        if (isBlocked())
+            throw new TransactionOnBlockedCardException();
+
+        balance = balance.subtract(money);
+    }
+
+    private boolean isNotEnoughMoney(BigDecimal money) {
+        return money.compareTo(balance) > 0;
+    }
+
+    private boolean isWithdrawOverTheLimit(BigDecimal money) {
+        return money.compareTo(limit) > 0;
     }
 
     public int getLimit(){
