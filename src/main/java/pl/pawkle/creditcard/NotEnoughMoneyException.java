@@ -1,4 +1,4 @@
-package pl.jkan.creditcard;
+package pl.pawkle.creditcard;
 
 public class NotEnoughMoneyException extends IllegalStateException {
 }
